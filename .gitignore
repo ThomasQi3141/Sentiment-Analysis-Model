@@ -3,3 +3,4 @@ __pycache__
 /model
 /glove
 *.json
+.DS_Store
