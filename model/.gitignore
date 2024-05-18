@@ -1,6 +1,6 @@
 /data
 __pycache__
-/model
+/saved_model
 /glove
 *.json
 .DS_Store
