@@ -1,3 +1,12 @@
+# Model
+model/data
+__pycache__
+model/saved_model
+model/glove
+*.json
+.DS_Store
+
+# React
 # Logs
 logs
 *.log
@@ -22,3 +31,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.env
+
+# Flask
+server/saved_model
+preprocessing_function.py

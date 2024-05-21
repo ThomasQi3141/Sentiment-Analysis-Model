@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+import axios from "axios";
+import SmileFace from "./assets/smile_face.svg";
+import FrownFace from "./assets/frown_face.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [clicked, setClicked] = useState(false);
+  const [text, setText] = useState("");
+  const [sentiment, setSentiment] = useState("");
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleClick = async () => {
+    if (text === "") {
+      alert("Empty Text Submission");
+    } else {
+      setClicked(true);
+      try {
+        let url = JSON.stringify(import.meta.env["VITE_REACT_API_URL"]);
+        url = url.substring(1, url.length - 1);
+        // Make the POST request using axios
+        const response = await axios.post(
+          url,
+          new URLSearchParams({
+            text: text,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+        setSentiment(response.data.prediction);
+        setClicked(false);
+      } catch (error) {
+        console.log("Error:", error);
+        setClicked(false);
+      }
+    }
+  };
+
+  const renderSentiment = () => {
+    if (sentiment === "") {
+      return <h2></h2>;
+    } else if (sentiment === "Positive") {
+      return <h2>🙂</h2>;
+    } else {
+      return <h2>🙁</h2>;
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Sentiment Analysis</h1>
+      <div className="wrapper">
+        <textarea
+          placeholder="Enter a movie review to analyze..."
+          value={text}
+          onChange={handleChange}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="wrapper">
+        {!clicked ? (
+          <button className="button-17" onClick={handleClick}>
+            Predict Sentiment
+          </button>
+        ) : (
+          <>
+            <div className="loader"></div>
+            <div className="loading-text">Retrieving Prediction...</div>
+          </>
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="prediction-wrapper">
+        {renderSentiment()}
+        <h2>{sentiment}</h2>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
