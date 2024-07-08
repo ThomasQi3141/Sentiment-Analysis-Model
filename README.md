@@ -34,7 +34,7 @@ I created a full-stack app using React and Flask to make it easier to get predic
 `requirements.txt`: The packages required to run the code to train the model<br />
 
 ## To-Use
-Although the final model was too big to upload to github, you can install the prerequisites using `requirements.txt` and locally train the model using the code from `/model`, saving it as a `.h2` file. 
+Although the final model was too big to upload to github, you can install the prerequisites using `requirements.txt` and locally train the model using the code from `/model`, saving it as a `.h5` file. 
 
 ### Installation:
 
