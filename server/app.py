@@ -45,12 +45,7 @@ def predict():
     # Predict using pretrained model
     predictions = pretrained_model.predict(data_padded)
     
-    predicted_sentiment = 'N/A'
-    
-    if (predictions[0][0] >= 0.5):
-        predicted_sentiment = 'Positive'
-    else:
-        predicted_sentiment = 'Negative'
+    predicted_sentiment = str(predictions[0][0])
     
     return jsonify({'prediction': predicted_sentiment})
 

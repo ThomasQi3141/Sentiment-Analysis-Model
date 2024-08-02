@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import SmileFace from "./assets/smile_face.svg";
 import FrownFace from "./assets/frown_face.svg";
+import Footer from "./Components/Footer";
 
 function App() {
   const [clicked, setClicked] = useState(false);
@@ -42,16 +43,6 @@ function App() {
     }
   };
 
-  const renderSentiment = () => {
-    if (sentiment === "") {
-      return <h2></h2>;
-    } else if (sentiment === "Positive") {
-      return <h2>🙂</h2>;
-    } else {
-      return <h2>🙁</h2>;
-    }
-  };
-
   return (
     <>
       <h1>Sentiment Analysis</h1>
@@ -74,10 +65,22 @@ function App() {
           </>
         )}
       </div>
-      <div className="prediction-wrapper">
-        {renderSentiment()}
-        <h2>{sentiment}</h2>
-      </div>
+      {sentiment && (
+        <div>
+          <div className="prediction-wrapper">
+            <h2>
+              Predicted Sentiment:{" "}
+              {sentiment >= 0.5 ? "Positive🙂" : "Negative🙁"}
+            </h2>
+          </div>
+          <div className="prediction-wrapper">
+            <h2>Sentiment Score (0-1): {sentiment}</h2>
+          </div>
+        </div>
+      )}
+      <Footer textColor={"white"}>
+        &copy; {new Date().getFullYear()} Thomas Qi. All rights reserved.{" "}
+      </Footer>
     </>
   );
 }
