@@ -1,5 +1,5 @@
 # Imports for the app
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Imports for the model
