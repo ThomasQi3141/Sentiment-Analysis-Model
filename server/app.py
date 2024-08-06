@@ -3,10 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Imports for the model
-import pandas as pd
-import numpy as np
 from keras.models import load_model
-import io
 import json
 from keras_preprocessing.text import tokenizer_from_json
 from preprocessing_function import CustomPreprocess
