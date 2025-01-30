@@ -1,7 +1,5 @@
 # Sentiment Analysis Model
 
-### Test out the model using the live deployment <a href="https://prod.d3ibf1d7tocu08.amplifyapp.com/" target=”_blank”>here</a>!
-
 ### Read the paper on the model <a href="https://docs.google.com/document/d/18bQrFfXe2t3NsTEKBmQuXB14lA2m48HP3802NjvZMHQ/edit?usp=sharing" target=”_blank”>here</a>
 
 ## Abstract
